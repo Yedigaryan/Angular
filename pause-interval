@@ -1,0 +1,15 @@
+private pauseTime: Date = new Date();
+private currentTime: number = 0;
+private minutes: number = 15;
+private miliseconds: number = 15000 * 60;
+
+public onStateChangeEvent({ data }: YT.OnStateChangeEvent): void {
+           this.interval = setInterval(() => {
+                this.currentTime += minutes;
+                  // write your code here
+                },  miliseconds - ((Date.now() - this.pauseTime.getTime()) % miliseconds));
+        } else {
+            this.pauseTime = new Date();
+            clearInterval(this.interval);
+         }
+     }
